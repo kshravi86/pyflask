@@ -14,7 +14,7 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
     .config(['$routeProvider', function($routeProvider) {
         $routeProvider.when('/', {templateUrl: 'partials/homeView.html', controller: 'HomeCtrl'});
         $routeProvider.when('/view1', {templateUrl: 'partials/hello.html'});
-        $routeProvider.when('/view2', {templateUrl: 'partials/tfsession.html'});
+        $routeProvider.when('/view2', {templateUrl: 'partials/template.html'});
         $routeProvider.when('/view3', {templateUrl: 'partials/tftensor.html'});
         $routeProvider.when('/view4', {templateUrl: 'partials/variables.html'});
         $routeProvider.when('/view5', {templateUrl: 'partials/add.html'});
