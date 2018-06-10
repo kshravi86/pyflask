@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="prism.css" rel="stylesheet">
+  </head>
+  <body style="background-color:white;" >
+	
+	<div class="topcoat-navigation-bar" ng-controller="HomeCtrl">
+	  <div class="topcoat-navigation-bar__item left quarter">
+		<a class="topcoat-icon-button--quiet" ng-click="slidePage('/','modal')">
+		  <span class="topcoat-icon home-icon"></span>
+		</a>
+	  </div>
+	  <div class="topcoat-navigation-bar__item center half">
+		<h1 class="topcoat-navigation-bar__title">Amazon Sample</h1>
+	  </div>
+	</div>
+	
+	<script type="text/javascript" src="prism.js"></script>
+
+	<pre  ng-prism  class="language-python"><code>
+		
+
+
+
+
+
+
+import os
+from flask import Flask, render_template, request
+from flask.ext.pymongo import PyMongo
+
+app = Flask(__name__)
+app.config['MONGO_URI'] = os.environ['MONGO_URI']
+mongo = PyMongo(app)
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    name = None
+    new = False
+    if request.method == 'POST' and 'name' in request.form:
+        name = request.form['name']
+        if mongo.db.names.find_one({'name': name}) is None:
+            # this is a new name, add it to the database
+            mongo.db.names.insert({'name': name})
+            new = True
+    return render_template('index.html', name=name, new=new)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
+
+        </code></pre>
+  </body>
+</html>		
